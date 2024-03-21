@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>GameOn</h1>
+      <nav>
+        <a href="#" class="link active">Accueil</a
+        ><a href="#" class="link">Détails de l'événement</a
+        ><a href="#" class="link">A propos</a
+        ><a href="#" class="link">Contact</a
+        ><a href="#" class="link">Evénements passés</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="block">
+        <h2>Marathon national de jeux vidéos</h2>
+        <h3>
+          Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
+          réservations... Places limitées !
+        </h3>
+        <button class="btn register">Je m'inscris</button>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modal__content">
+        <p class="modal__close">X</p>
+        <form action="#">
+          <div>
+            <label class="modal__label"
+              >Prénom
+              <input type="text" id="firstname" class="modal__input" />
+              <p class="modal__error-msg"></p>
+            </label>
+            <label class="modal__label"
+              >Nom
+              <input type="text" id="lastname" class="modal__input" />
+              <p class="modal__error-msg"></p>
+            </label>
+            <label class="modal__label"
+              >E-mail
+              <input type="email" id="email" class="modal__input" />
+              <p class="modal__error-msg"></p>
+            </label>
+            <label class="modal__label">
+              Date de naissance
+              <input type="date" id="birth" class="modal__input" />
+              <p class="modal__error-msg"></p>
+            </label>
+            <label class="modal__label">
+              À combien de tournois GameOn avez-vous déjà participé ?
+              <input type="number" id="experience" class="modal__input" />
+              <p class="modal__error-msg"></p>
+            </label>
+          </div>
+          <div class="modal__tournament">
+            <p>A quel tournoi souhaitez-vous participer cette année ?</p>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice1"
+              value="new york"
+            /><label for="tournamentChoice1">New York</label>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice2"
+              value="san francisco"
+            /><label for="tournamentChoice2">San Francisco</label>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice3"
+              value="seattle"
+            /><label for="tournamentChoice3">Seattle</label>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice4"
+              value="chicago"
+            /><label for="tournamentChoice4">Chicago</label>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice6"
+              value="boston"
+            /><label for="tournamentChoice6">Boston</label>
+            <input
+              type="radio"
+              name="tournament"
+              id="tournamentChoice6"
+              value="portland"
+            /><label for="tournamentChoice6">Portland</label>
+            <p class="modal__error-msg"></p>
+          </div>
+          <div>
+            <div class="modal__checkbox">
+              <input type="checkbox" id="conditions" /><label for="conditions"
+                >J'ai lu et accepté les conditions d'utilisation.</label
+              >
+              <input type="checkbox" id="sub" /><label for="sub"
+                >Je souhaite être prévenu des prochains évènements.</label
+              >
+              <p class="modal__error-msg"></p>
+            </div>
+            <input
+              class="btn modal__submit"
+              type="submit"
+              value="C'est parti"
+            />
+          </div>
+        </form>
+        <div class="modal__confirm">
+          <h3>Merci, votre inscription a été enregistrée</h3>
+          <button class="btn modal__close">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <p>Copyright 2014 - 2022, GameOn Inc.</p>
+  </footer>
+</html>

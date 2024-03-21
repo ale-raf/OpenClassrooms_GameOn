@@ -1,0 +1,142 @@
+:root {
+  --red: #ff001b;
+  --hover-btn: #3876ac;
+  --black: #232323;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  background-color: rgba(5, 0, 164, 0.5);
+  color: white;
+}
+.modal__content {
+  position: fixed;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  max-width: 35%;
+  padding: 30px;
+  background-color: var(--black);
+  border-radius: 10px;
+  font-size: 1.25rem;
+}
+.modal__confirm {
+  display: none;
+}
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.modal__input {
+  height: 45px;
+}
+.modal__tournament label {
+  margin-left: 5px;
+  font-size: 0.85rem;
+}
+.modal__checkbox label {
+  display: inline-block;
+  width: 95%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.modal__error-msg {
+  display: none;
+  margin-top: 5px;
+  color: var(--red);
+  font-size: 0.9rem;
+}
+.modal__submit {
+  margin-top: 15px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav {
+  display: flex;
+  gap: 15px;
+  margin-block: 50px;
+}
+footer p {
+  color: var(--red);
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+p.modal__close {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  cursor: pointer;
+}
+.link {
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  padding: 10px;
+}
+.link:hover {
+  background-color: var(--red);
+  color: white;
+}
+.link.active {
+  background-color: var(--red);
+  color: white;
+}
+.btn {
+  background-color: var(--red);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--hover-btn);
+}
+.container {
+  background-color: var(--black);
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+.block {
+  position: relative;
+  width: 50%;
+  padding: 20px;
+  background-color: grey;
+  border-radius: 10px;
+}
+.block h2 {
+  /* position: absolute; */
+  font-size: 3rem;
+}
+.block h3 {
+  margin-block: 50px;
+  font-size: 1.75rem;
+}
+form > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
