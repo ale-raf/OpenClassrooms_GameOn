@@ -1,9 +1,12 @@
-const modal = document.querySelector(".modal");
-const btn = document.querySelector(".btn.register");
-const modalCloseBtn = document.querySelectorAll(".modal__close");
 const links = document.querySelectorAll("a");
-const form = document.querySelector("form");
+const btn = document.querySelector(".btn.register");
+// sélection éléments modal
+const modal = document.querySelector(".modal");
+const modalCloseBtn = document.querySelectorAll(".modal__close");
+const modalForm = document.querySelector("form");
 const modalConfirm = document.querySelector(".modal__confirm");
+const modalErrorMsg = document.querySelectorAll(".modal__error-msg");
+// sélection éléments input
 const firstname = document.querySelector("#firstname");
 const lastname = document.querySelector("#lastname");
 const email = document.querySelector("#email");
@@ -11,10 +14,8 @@ const birth = document.querySelector("#birth");
 const experience = document.querySelector("#experience");
 const conditions = document.querySelector("#conditions");
 const radioButtons = document.getElementsByName("tournament");
-const modalErrorMsg = document.querySelectorAll(".modal__error-msg");
 
 let inputList = [firstname, lastname, email, birth, experience];
-
 let response = {
   firstname: "Le champ prénom ne peut être vide",
   lastname: "Le champ nom ne peut être vide",
@@ -25,6 +26,7 @@ let response = {
   conditions: "Vous devez accepter nos conditions d'utilisation",
 };
 
+// réinitialisation du formulaire
 function resetForm() {
   document
     .querySelectorAll("input:not(.modal__submit")
@@ -35,7 +37,7 @@ function resetForm() {
 }
 
 links.forEach((link) => link.addEventListener("click", activeLink));
-
+// effet de style sur le lien actif du menu
 function activeLink(e) {
   for (let link of links) {
     link === e.target
@@ -45,7 +47,7 @@ function activeLink(e) {
 }
 
 btn.addEventListener("click", openModal);
-
+// ouverture de la modal
 function openModal(e) {
   resetForm();
   let isModalOpen = window.getComputedStyle(modal).display === "none";
@@ -59,14 +61,13 @@ function openModal(e) {
 }
 
 modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-
+// fermeture de la modal
 function closeModal() {
   resetForm();
   modal.style.display = "none";
 }
 
-form.addEventListener("submit", handleSubmit);
-
+// contrôle des différents champs du formulaire
 function checkBasicInput() {
   let isEmpty = "";
   for (let input of inputList) {
@@ -104,6 +105,8 @@ function checkCheckboxInput() {
   }
 }
 
+modalForm.addEventListener("submit", handleSubmit);
+// soumission du formulaire
 function handleSubmit(e) {
   e.preventDefault();
   checkBasicInput();
