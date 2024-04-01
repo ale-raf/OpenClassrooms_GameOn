@@ -1,4 +1,4 @@
-const links = document.querySelectorAll("a");
+// const links = document.querySelectorAll("a");
 const btn = document.querySelector(".btn.register");
 // sélection éléments modal
 const modal = document.querySelector(".modal");
@@ -14,6 +14,7 @@ const birth = document.querySelector("#birth");
 const experience = document.querySelector("#experience");
 const conditions = document.querySelector("#conditions");
 const radioButtons = document.getElementsByName("tournament");
+const modalInputs = document.querySelectorAll("input:not(.modal__submit)");
 
 let inputList = [firstname, lastname, email, birth, experience];
 let response = {
@@ -36,28 +37,23 @@ function resetForm() {
   );
 }
 
-links.forEach((link) => link.addEventListener("click", activeLink));
-// effet de style sur le lien actif du menu
-function activeLink(e) {
-  for (let link of links) {
-    link === e.target
-      ? link.classList.add("active")
-      : link.classList.remove("active");
-  }
-}
+// links.forEach((link) => link.addEventListener("click", activeLink));
+// // effet de style sur le lien actif du menu
+// function activeLink(e) {
+//   for (let link of links) {
+//     link === e.target
+//       ? link.classList.add("active")
+//       : link.classList.remove("active");
+//   }
+// }
 
 btn.addEventListener("click", openModal);
 // ouverture de la modal
 function openModal(e) {
-  resetForm();
-  let isModalOpen = window.getComputedStyle(modal).display === "none";
-  if (isModalOpen) {
-    modal.style.display = "block";
-    form.style.display = "block";
-    modalConfirm.style.display = "none";
-  } else {
-    modal.style.display = "none";
-  }
+  modal.style.display = "block";
+  modalForm.style.display = "block";
+  modalConfirm.style.display = "none";
+  document.body.style.overflow = "hidden";
 }
 
 modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
@@ -65,6 +61,7 @@ modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 function closeModal() {
   resetForm();
   modal.style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
 // contrôle des différents champs du formulaire
@@ -84,39 +81,45 @@ function checkBasicInput() {
 function checkRadioInput() {
   let isEmpty = "";
   for (let radio of radioButtons) {
+    let errorMsgElt = radio.parentElement.parentElement.lastElementChild;
     if (radio.checked) {
-      radio.parentElement.lastElementChild.textContent = isEmpty;
-      radio.parentElement.lastElementChild.style.display = "none";
+      errorMsgElt.textContent = isEmpty;
+      errorMsgElt.style.display = "none";
       break;
     } else {
-      radio.parentElement.lastElementChild.textContent = response.choice;
-      radio.parentElement.lastElementChild.style.display = "block";
+      errorMsgElt.textContent = response.choice;
+      errorMsgElt.style.display = "block";
     }
   }
 }
 
 function checkCheckboxInput() {
   if (conditions.checked) {
-    conditions.parentElement.lastElementChild.textContent = "";
-    conditions.parentElement.lastElementChild.style.display = "none";
+    let errorMsgElt = conditions.parentElement.lastElementChild;
+    errorMsgElt.textContent = "";
+    errorMsgElt.style.display = "none";
   } else {
-    conditions.parentElement.lastElementChild.textContent = response.conditions;
-    conditions.parentElement.lastElementChild.style.display = "block";
+    errorMsgElt.textContent = response.conditions;
+    errorMsgElt.style.display = "block";
   }
 }
+
+// callback qui vérifie si les messages d'erreur sont affichés
+const validateForm = (msg) =>
+  msg.textContent === "" && msg.style.display === "none";
 
 modalForm.addEventListener("submit", handleSubmit);
 // soumission du formulaire
 function handleSubmit(e) {
   e.preventDefault();
+  // appel des fonctions chargées de vérifier les champs
   checkBasicInput();
   checkRadioInput();
   checkCheckboxInput();
-  let isFormValid = [...modalErrorMsg].every(
-    (msg) => msg.textContent === "" && msg.style.display === "none"
-  );
+  // validation globale du formulaire via la vérification des messages d'erreur
+  let isFormValid = [...modalErrorMsg].every(validateForm);
   if (isFormValid) {
-    form.style.display = "none";
+    modalForm.style.display = "none";
     modalConfirm.style.display = "block";
   }
 }
