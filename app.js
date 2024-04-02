@@ -94,8 +94,8 @@ function checkRadioInput() {
 }
 
 function checkCheckboxInput() {
+  let errorMsgElt = conditions.parentElement.lastElementChild;
   if (conditions.checked) {
-    let errorMsgElt = conditions.parentElement.lastElementChild;
     errorMsgElt.textContent = "";
     errorMsgElt.style.display = "none";
   } else {
